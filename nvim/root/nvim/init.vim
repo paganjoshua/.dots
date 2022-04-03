@@ -46,6 +46,9 @@ let g:tokyonight_colors = {
   \ }
 colorscheme tokyonight
 
+" Cursor
+set guicursor=i-ci:hor20  " set cursor to horizontal bar @ 20% char height
+
 " Settings
 set hlsearch  " highlight search
 set tabstop=2 " # of columns occupied by a tab
