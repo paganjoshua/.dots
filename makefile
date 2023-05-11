@@ -12,9 +12,13 @@ PICOM_DIR := $(CONF_DIR)/picom
 RANGER_DIR := $(CONF_DIR)/ranger
 USR_DIR := /usr
 
-all: bash_functions etc kitty nvim picom ranger usr
+user: bash_functions kitty nvim picom ranger
 
-all-clean: bash_functions-clean etc-clean kitty-clean nvim-clean picom-clean ranger-clean usr-clean
+user-clean: bash_functions-clean kitty-clean nvim-clean picom-clean ranger-clean 
+
+system: etc usr
+
+system-cleam: etc-clean usr-clean
 
 bash_functions:
 	stow -t $(BF_DIR) bash_functions
