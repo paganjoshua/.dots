@@ -1,0 +1,8 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=DWM
+Comment=Dynamic Window Manager
+#Exec=/home/jynx/quarterdeck/pacports/suckless/dwm/bin/start.sh
+Exec=/usr/share/xsessions/bin/start.sh
+Icon=dwm
+Type=XSession

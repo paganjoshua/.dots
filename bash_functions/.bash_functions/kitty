@@ -1,0 +1,5 @@
+herekitty () {
+  local p="$1"
+  kitty --detach -d "$p"
+}
+

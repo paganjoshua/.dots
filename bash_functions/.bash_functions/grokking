@@ -1,0 +1,119 @@
+grokkrc () {
+  nvim ~/bin/grokking
+}
+
+grokkprep () {
+  mkdir -p $1/img && \
+  touch $1/$1{{,_test}.go,.md}
+}
+
+grokkchal () {
+  n=$1
+  i=1
+  while [ $i -le $n ]; do 
+    mkdir -p challenges/challenge$i
+    touch challenges/challenge$i/{challenge{{,_test}.go,.md},solution{.go,.md}}
+    i=$(( $i + 1 ))
+  done
+}
+    #-e "s/\(Problem Statement\|Solution\|Code\|Similar Problems\|A better approach\|Time Complexity\|Space Complexity\|Try it yourself\)\[\#\].*/\1/" \
+
+grokksed () {
+  local base=`basename $PWD`
+  sed -i \
+    -e "s/\\\u201\(8\|9\)/'/g" \
+    -e "s/\\\u2217/*/g" \
+    -e "s/\(O([A-Z1-9+-/\*]*)\)\{3\}/\1/g" \
+    -e "s/\([A-Z1-9+-/\*<>=]\{3,4\}\|[A-Z]\)\{3\}/\1/g" \
+    -e "s/O([A-Z+-]\+∗log[A-Z])//g" \
+    -e "s/\(O(log[A-Z])\)\{3\}/\1/g" \
+    -e "s/O(log[A-Z][+-][A-Z])//g" \
+    -e "s/O(log[A-Z][+-][A-Z][+-∗]log[A-Z])//g" \
+    -e "s/O([A-Z][+-∗][A-Z]\?log[A-Z][+-∗][A-Z]\?log[A-Z])//g" \
+    -e "s/\(O([A-Z]\?log[A-Z])\)\{3\}/\1/g" \
+    -e "s/\(Output:.*\)/\r\1/" \
+    -e "s/\(Explanation:.*\)/\r\1/" \
+    -e "s/^\(\#\+.*\)\[\#\].*/\1/" \
+    $base.md
+}
+
+grokkstrip () {
+  sed -i \
+    -e "s/\(O([A-Z1-9+-/\*]*)\)\{3\}/\1/g" \
+    -e "s/\([A-Z1-9+-/\*<>=]\{3,4\}\|[A-Z]\)\{3\}/\1/g" \
+    -e "s/O([A-Z+-]\+∗log[A-Z])//g" \
+    -e "s/\(O(log[A-Z])\)\{3\}/\1/g" \
+    -e "s/O(log[A-Z][+-][A-Z])//g" \
+    -e "s/O(log[A-Z][+-][A-Z][+-∗]log[A-Z])//g" \
+    -e "s/O([A-Z][+-∗][A-Z]\?log[A-Z][+-∗][A-Z]\?log[A-Z])//g" \
+    -e "s/\(O([A-Z]\?log[A-Z])\)\{3\}/\1/g" \
+    -e "s/\(Output:.*\)/\r\1/" \
+    -e "s/\(Explanation:.*\)/\r\1/" \
+    -e "s/^\(\#\+.*\)\[\#\].*/\1/" \
+    $1
+}
+
+grokkpic () {
+  local count=$1
+  local imgpath=$2
+  local region=$3
+  local delay=$4
+
+  i=1
+  while [ $i -le $count ]; do
+    if [ $i -lt 10 ]
+    then
+      imgfile="${imgpath}0${i}.png"
+    else
+      imgfile="${imgpath}${i}.png"
+    fi
+
+    flameshot gui --path "$imgfile" --region "$region" --delay "$delay"
+
+    i=$(( $i + 1 ))
+  done
+}
+
+grokkpack () {
+  #echo -e "package $(basename $PWD)\n\nimport (\n\n)" | sed s/-//g | tee -a "$(basename $PWD)"{,_test}.go
+  local packagename="package $(basename $PWD | sed s/-//g)"
+cat <<- EOF > "$(basename $PWD)".go
+$packagename
+
+import (
+
+)
+
+func () {
+}
+EOF
+
+cat <<- EOF > "$(basename $PWD)"_test.go
+$packagename
+
+import (
+  "testing"
+)
+
+func Testfunctotest(t *testing.T) {
+  tests := map[string]struct {
+    input   int
+    expect  int
+  }{
+    "a": {
+      input:  1,
+      expect: 1,
+    },
+  }
+
+  for name, tc := range tests {
+    t.Run(name, func(t *testing.T){
+      got := functotest(tc.input)     
+      if tc.expect != got {
+        t.Fatalf("expected: %v, got: %v", tc.expect, got)
+      }
+    })
+  }
+}
+EOF
+}
