@@ -1,0 +1,18 @@
+# Reload sxhkd config
+ctrl + shift + r; k; e; y; s; @s
+  pkill -USR1 -x sxhkd
+
+# Logout (end dwm)
+alt + ctrl + shift + q; alt + ctrl + shift + @q 
+  pkill -x dwm
+
+# Switch User
+alt + shift + Tab; alt + shift + @Tab
+  OTHER_USER=''; \
+  if [[ $USER -eq 'jynx' ]]; then \
+    OTHER_USER='paganite'; \
+  else \
+    OTHER_USER='jynx'; \
+  fi; \
+  [[ -n $OTHER_USER ]] && \
+    dm-tool switch-to-user $OTHER_USER

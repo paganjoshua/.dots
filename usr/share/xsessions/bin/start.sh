@@ -60,9 +60,10 @@ while true; do
 done &
 
 # Exec dwm
-while true; do
-  dwm 2> $HOME/quarterdeck/pacports/suckless/dwm/dwm.log
-done
-
+dwm 2> $HOME/quarterdeck/pacports/suckless/dwm/dwm.log
+#while true; do
+#  dwm 2> $HOME/quarterdeck/pacports/suckless/dwm/dwm.log
+#done
+#
 
 

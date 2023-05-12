@@ -10,6 +10,7 @@ NVIM_DIR := $(CONF_DIR)/nvim
 NVIM_ROOT_DIR := /root/.config/nvim
 PICOM_DIR := $(CONF_DIR)/picom
 RANGER_DIR := $(CONF_DIR)/ranger
+SXHKD_DIR := $(CONF_DIR)/sxhkd
 USR_DIR := /usr
 
 user: bash_functions kitty nvim picom ranger
@@ -62,10 +63,16 @@ ranger:
 ranger-clean:
 	stow -t $(RANGER_DIR) -D ranger
 
+sxhkd:
+	stow -t $(SXHKD_DIR) sxhkd
+
+sxhkd-clean:
+	stow -t $(SXHKD_DIR) -D sxhkd
+
 usr:
 	stow -t $(USR_DIR)/share/xsessions -d ./usr/share/ xsessions
 
 usr-clean:
 	stow -t $(USR_DIR)/share/xsessions -d ./usr/share/ -D xsessions
 
-.PHONY: bash_functions etc kitty nvim picom ranger usr
+.PHONY: bash_functions etc kitty nvim picom ranger sxhkd usr
