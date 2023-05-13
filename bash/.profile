@@ -1,5 +1,5 @@
 #
-# ~/.bash_profile
+# ~/.profile
 #
 
 # Quarterdeck
@@ -21,6 +21,10 @@ export FOUNDRYVTT_PATH=$HOME/.local/share/foundryvtt
 PATH+=:$FOUNDRYVTT_PATH
 
 export PATH
+
+# Interactive Shell
+# If not running interactively, don't do anything
+[[  $- != *i* ]] && return
 
 # Source bashrc
 [[ -f ~/.bashrc ]] && . ~/.bashrc

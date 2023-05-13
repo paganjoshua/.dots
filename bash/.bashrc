@@ -1,5 +1,6 @@
-# If not running interactively, don't do anything
-[[  $- != *i* ]] && return
+#
+# ~/.bashrc
+#
 
 # Source Aliases
 if [[ -s ~/.bash_aliases ]]; then
