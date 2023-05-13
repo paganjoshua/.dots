@@ -1,0 +1,23 @@
+pywalemiah(){
+	wal -n -i /home/jynx/quarterdeck/dnd/dnd/characters/images/emiah_02.png -b 111111 --saturate .4
+}
+
+pywalostiarius(){
+	wal -n -i /home/jynx/quarterdeck/dnd/dnd/creatures/images/ostiarius.webp -b 111111
+}
+
+pywalostovite(){
+	wal -n -i /home/jynx/quarterdeck/dnd/dnd/creatures/images/ostovite.webp -b 111111
+}
+
+pywalraktavarna(){
+	wal -n -i /home/jynx/quarterdeck/dnd/dnd/creatures/images/raktavarna.webp -b 111111 --saturate .2
+}
+
+pywalvermlek(){
+	wal -n -i /home/jynx/quarterdeck/dnd/dnd/creatures/images/vermlek.png --saturate .3 -b 111111
+}
+
+pywalvulture(){
+  wal -n -i "/home/jynx/quarterdeck/dnd/dnd/creatures/images/granite vulture.webp" -b 111111
+}

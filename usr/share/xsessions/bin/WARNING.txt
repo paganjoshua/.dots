@@ -1,0 +1,3 @@
+WARNING:
+This directory was created by the '.dots' configuration script and can be 
+removed at any time. Files should only be placed in here by that script.

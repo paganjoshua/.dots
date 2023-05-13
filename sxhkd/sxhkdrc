@@ -1,4 +1,9 @@
-# Reload sxhkd config
+# Reload Configs:
+# kitty
+ctrl + shift + r; k; i; t; t; y; @y
+  pkill -USR1 -x kitty
+
+# sxhkd 
 ctrl + shift + r; k; e; y; s; @s
   pkill -USR1 -x sxhkd
 

@@ -10,6 +10,9 @@ xset s 3600 3600 -dpms
 # Compositor
 picom --config $XDG_CONFIG_HOME/picom/picom.conf -f &
 
+# Hotkeys
+sxhkd &
+
 # Wallpaper
 nitrogen --restore &
 
@@ -60,10 +63,13 @@ while true; do
 done &
 
 # Exec dwm
-dwm 2> $HOME/quarterdeck/pacports/suckless/dwm/dwm.log
-#while true; do
-#  dwm 2> $HOME/quarterdeck/pacports/suckless/dwm/dwm.log
-#done
-#
+# restart if dwm exits 0 -- this allows reloading config.h
+# end entirely with 'pkill dwm'
+while true; do
+  dwm 2> $HOME/quarterdeck/pacports/suckless/dwm/dwm.log \
+  && continue \
+  || break
+done
+
 
 
